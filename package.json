@@ -5,6 +5,10 @@
   "repository": "git@github.com:thomashomsy/discord-bot.git",
   "author": "Thomas Homsy <thomas.homsy@sky.uk>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
   "dependencies": {
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0"
