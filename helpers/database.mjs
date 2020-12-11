@@ -1,6 +1,6 @@
 //const mysql = require("mysql");
 
-export default class database {
+class database {
   constructor() {
     this.mysql = require("mysql");
 
@@ -27,3 +27,4 @@ export default class database {
     );
   }
 }
+module.exports = database;
