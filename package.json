@@ -5,6 +5,7 @@
   "repository": "git@github.com:thomashomsy/discord-bot.git",
   "author": "Thomas Homsy <thomas.homsy@sky.uk>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "test": "jest"
