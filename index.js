@@ -1,4 +1,4 @@
-const Database = require("./helpers/database.mjs");
+const Database = require("./helpers/database");
 const Discord = require("discord.js");
 require("dotenv").config();
 const client = new Discord.Client();
