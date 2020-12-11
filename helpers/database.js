@@ -1,9 +1,7 @@
-//const mysql = require("mysql");
+import mysql from "mysql";
 
 export default class Database {
   constructor() {
-    this.mysql = require("mysql");
-
     this.connection = mysql.connection({
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
