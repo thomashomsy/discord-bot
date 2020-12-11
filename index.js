@@ -1,6 +1,8 @@
 import Database from "./helpers/database.js";
-const Discord = require("discord.js");
-require("dotenv").config();
+import Discord from "discord.js";
+import dotenv from "dotenv";
+dotenv.config();
+//require("dotenv").config();
 const client = new Discord.Client();
 
 const db = new Database();
