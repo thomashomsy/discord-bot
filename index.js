@@ -3,7 +3,9 @@ require("dotenv").config();
 const client = new Discord.Client();
 
 client.on("message", function (message) {
-  console.log(message.author.tag + ": " + message.content);
+  console.log(
+    message.author + " - " + message.author.tag + ": " + message.content
+  );
 });
 
 client.on("ready", () => {
