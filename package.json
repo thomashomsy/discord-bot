@@ -1,18 +1,12 @@
 {
   "name": "busr-bot",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "test",
-    "start": "node index.js"
-  },
-  "author": "Thomas Homsy",
-  "license": "ISC",
+  "repository": "git@github.com:thomashomsy/discord-bot.git",
+  "author": "Thomas Homsy <thomas.homsy@sky.uk>",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "eslint": "^7.15.0"
+    "dotenv": "^8.2.0"
   }
 }
