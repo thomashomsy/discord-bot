@@ -53,7 +53,7 @@ class Database {
       `SELECT isAdmin FROM busr_members WHERE 'discord_id'=${author};`,
       function (err, result) {
         if (err) console.log(err);
-        if (result[0] && result[0].isAdmin === 1) return true;
+        if (result.length !== 0 && result[0].isAdmin === 1) return true;
         else return false;
       }
     );
