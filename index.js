@@ -2,12 +2,11 @@
 const Discord = require("discord.js");
 require("dotenv").config();
 const client = new Discord.Client();
+const mysql = require("mysql");
 
 class Database {
   constructor() {
-    this.mysql = require("mysql");
-
-    this.connection = this.mysql.connection({
+    this.connection = mysql.connection({
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.DB_PASS,
