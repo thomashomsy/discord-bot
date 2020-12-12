@@ -67,7 +67,8 @@ class MessageProccesor {
   }
   addMember(args) {
     if (args.length >= 4) {
-      const resolveName = this.client.users.cache.get(args[1]);
+      const resolveName = this.client.users.cache.get(args[1]).id;
+      console.log("Name resolved to: " + resolveName);
       if (resolveName) {
         const id = parseInt(resolveName.id);
         if (db.getUser(id).length < 1) {
@@ -75,8 +76,11 @@ class MessageProccesor {
           const isAdmin = parseInt(args[2]);
           const university = args[3];
           return db.addMember(id, args[1], isAdmin, university);
+        } else {
+          console.log("failed line 73");
         }
       }
+      console.log("resolve name didn't work");
     }
     return false;
   }
