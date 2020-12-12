@@ -22,6 +22,7 @@ class Database {
   setUpTables() {
     this.connection.query("DROP DATABASE busr;");
     this.connection.query("CREATE DATABASE busr;");
+    this.connection.query("USE busr;");
     this.connection.query(
       "CREATE TABLE `busr_members` ( `discord_id` INT(64) unsigned NOT NULL, `discord_name` VARCHAR(64) DEFAULT '', `isAdmin` BOOLEAN NOT NULL DEFAULT 0, `university` VARCHAR(40) DEFAULT '', PRIMARY KEY (`discord_id`) );"
     );
