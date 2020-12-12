@@ -91,7 +91,7 @@ class MessageProccesor {
         case "addmember":
           if (db.isAdmin(message.author)) {
             message.reply("Attempting to add a member!");
-            if (addMember(args)) {
+            if (this.addMember(args)) {
               message.reply("User Added");
             } else {
               message.reply("User was not added!");
