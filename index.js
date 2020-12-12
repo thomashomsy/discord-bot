@@ -89,7 +89,7 @@ class MessageProccesor {
         .split(" "); //Split up command arguments
       switch (args[0]) {
         case "addmember":
-          if (db.isAdmin(message.author)) {
+          if (db.isAdmin(message.author.id)) {
             message.reply("Attempting to add a member!");
             if (this.addMember(args)) {
               message.reply("User Added");
@@ -109,7 +109,7 @@ const db = new Database();
 const MP = new MessageProccesor(db, client);
 client.on("message", function (message) {
   console.log(
-    message.author + " - " + message.author.tag + ": " + message.content
+    message.author.id + " - " + message.author.tag + ": " + message.content
   );
   MP.processMessage(message);
 });
