@@ -30,14 +30,87 @@ class Database {
       "INSERT INTO `busr_members` VALUES(188720056404803586, `Respects#3394`, 1, `University Of Kent`)"
     );
   }
+
+  addMember(userId, userTag, isAdmin, university) {
+    this.connection.query(
+      `INSERT INTO busr_members VALUES(${userId}, ${userTag}, ${isAdmin}, ${university});`
+    );
+    return true;
+  }
+
+  getUser(author) {
+    return this.connection.query(
+      `SELECT * FROM busr_members WHERE 'discord_id'=${author};`,
+      function (err, result) {
+        if (err) console.log(err);
+        return result;
+      }
+    );
+  }
+
+  isAdmin(author) {
+    return this.connection.query(
+      `SELECT isAdmin FROM busr_members WHERE 'discord_id'=${author};`,
+      function (err, result) {
+        if (err) console.log(err);
+        if (result[0] && result[0].isAdmin === 1) return true;
+        else return false;
+      }
+    );
+  }
+}
+
+class MessageProccesor {
+  constructor(db, client) {
+    this.db = db;
+    this.client = client;
+  }
+
+  processMessage(message) {
+    if (message.content.startsWith("!")) {
+      const args = message.content
+        .substring(1, message.content.length - 1)
+        .toLowerCase()
+        .split(" "); //Split up command arguments
+      switch (args[0]) {
+        case "addmember":
+          if (isAdmin(message.author)) {
+            message.reply("Attempting to add a member!");
+            if (addMember(args)) {
+              message.reply("User Added");
+            } else {
+              message.reply("User was not added!");
+            }
+          } else {
+            message.reply("Sorry You don't have permission for this!");
+          }
+          break;
+      }
+    }
+  }
+  addMember(args) {
+    if (args.length >= 4) {
+      const resolveName = this.client.users.cache.get(args[1]);
+      if (resolveName) {
+        const id = parseInt(resolveName.id);
+        if (db.getUser(id).length < 1) {
+          const isAdmin = parseInt(args[2]);
+          const university = args[3];
+          return db.addMember(id, args[1], isAdmin, university);
+        }
+      }
+    }
+    return false;
+  }
 }
 
 const db = new Database();
-//db.setUpTables();
-new client.on("message", function (message) {
+const MP = new MessageProccesor(db, client);
+client.on("message", function (message) {
   console.log(
     message.author + " - " + message.author.tag + ": " + message.content
   );
+  MP.processMessage(message);
 });
 
 client.on("ready", () => {
