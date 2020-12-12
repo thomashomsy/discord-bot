@@ -74,7 +74,7 @@ class MessageProccesor {
         .split(" "); //Split up command arguments
       switch (args[0]) {
         case "addmember":
-          if (isAdmin(message.author)) {
+          if (db.isAdmin(message.author)) {
             message.reply("Attempting to add a member!");
             if (addMember(args)) {
               message.reply("User Added");
@@ -94,6 +94,7 @@ class MessageProccesor {
       if (resolveName) {
         const id = parseInt(resolveName.id);
         if (db.getUser(id).length < 1) {
+          console.log("User does not exist in DB");
           const isAdmin = parseInt(args[2]);
           const university = args[3];
           return db.addMember(id, args[1], isAdmin, university);
