@@ -67,7 +67,7 @@ class MessageProccesor {
   }
   addMember(args) {
     if (args.length >= 4) {
-      const resolveName = this.client.users.cache.get(args[1]).id;
+      const resolveName = this.client.users.cache.get(args[1]);
       console.log("Name resolved to: " + resolveName);
       if (resolveName) {
         const id = parseInt(resolveName.id);
