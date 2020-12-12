@@ -65,6 +65,21 @@ class MessageProccesor {
     this.db = db;
     this.client = client;
   }
+  addMember(args) {
+    if (args.length >= 4) {
+      const resolveName = this.client.users.cache.get(args[1]);
+      if (resolveName) {
+        const id = parseInt(resolveName.id);
+        if (db.getUser(id).length < 1) {
+          console.log("User does not exist in DB");
+          const isAdmin = parseInt(args[2]);
+          const university = args[3];
+          return db.addMember(id, args[1], isAdmin, university);
+        }
+      }
+    }
+    return false;
+  }
 
   processMessage(message) {
     if (message.content.startsWith("!")) {
@@ -87,21 +102,6 @@ class MessageProccesor {
           break;
       }
     }
-  }
-  addMember(args) {
-    if (args.length >= 4) {
-      const resolveName = this.client.users.cache.get(args[1]);
-      if (resolveName) {
-        const id = parseInt(resolveName.id);
-        if (db.getUser(id).length < 1) {
-          console.log("User does not exist in DB");
-          const isAdmin = parseInt(args[2]);
-          const university = args[3];
-          return db.addMember(id, args[1], isAdmin, university);
-        }
-      }
-    }
-    return false;
   }
 }
 
