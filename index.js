@@ -15,7 +15,7 @@ class Database {
     });
 
     this.connection.connect(function (error) {
-      if (err) console.log("Error: " + error);
+      if (error) console.log("Error: " + error);
     });
   }
 
