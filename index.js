@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 require("dotenv").config();
 const client = new Discord.Client();
 
-const Database = require("./helpers/Database.js");
+const Database = require("/discord-bot/helpers/Database.js");
 
 class MessageProccesor {
   constructor(db, client) {
@@ -56,7 +56,7 @@ class MessageProccesor {
 
 const db = new Database();
 const MP = new MessageProccesor(db, client);
-client.users.resolveID();
+//client.users.resolveID();
 client.on("message", function (message) {
   console.log(
     message.author.id + " - " + message.author.tag + ": " + message.content
