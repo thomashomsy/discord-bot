@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 require("dotenv").config();
 const client = new Discord.Client();
 
-const Database = require('./helpers/Database.js');
+const Database = require("./helpers/Database.js");
 
 class MessageProccesor {
   constructor(db, client) {
@@ -12,7 +12,6 @@ class MessageProccesor {
   }
   addMember(args) {
     if (args.length >= 4) {
-      this.client.users.
       const resolveName = this.client.users.cache.get(args[1]);
       console.log("Name resolved to: " + resolveName);
       if (resolveName) {
@@ -57,7 +56,7 @@ class MessageProccesor {
 
 const db = new Database();
 const MP = new MessageProccesor(db, client);
-client.users.resolveID()
+client.users.resolveID();
 client.on("message", function (message) {
   console.log(
     message.author.id + " - " + message.author.tag + ": " + message.content
