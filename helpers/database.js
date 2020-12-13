@@ -1,4 +1,4 @@
-//const mysql = require("mysql");
+const mysql = require("mysql");
 
 class Database {
   constructor() {
@@ -11,7 +11,7 @@ class Database {
     });
 
     this.connection.connect(function (error) {
-      console.log(error);
+      if (error) console.log("Error: " + error);
     });
   }
 
@@ -23,11 +23,36 @@ class Database {
       "CREATE TABLE `busr_members` ( `discord_id` INT(64) unsigned NOT NULL, `discord_name` VARCHAR(64) DEFAULT '', `isAdmin` BOOLEAN NOT NULL DEFAULT 0, `university` VARCHAR(40) DEFAULT '', PRIMARY KEY (`discord_id`) );"
     );
     this.connection.query(
-      "INSERT INTO `busr_members` VALUES(188720056404803586, `Respects#3394`, 1, `University Of Kent`)",
+      "INSERT INTO `busr_members` VALUES(188720056404803586, `Respects#3394`, 1, `University Of Kent`)"
+    );
+  }
+
+  addMember(userId, userTag, isAdmin, university) {
+    this.connection.query(
+      `INSERT INTO busr_members VALUES(${userId}, ${userTag}, ${isAdmin}, ${university});`
+    );
+    return true;
+  }
+
+  getUser(author) {
+    return this.connection.query(
+      `SELECT * FROM busr_members WHERE 'discord_id'=${author};`,
       function (err, result) {
-        console.log(result);
+        if (err) console.log(err);
+        return result;
+      }
+    );
+  }
+
+  isAdmin(author) {
+    return this.connection.query(
+      `SELECT isAdmin FROM busr_members WHERE 'discord_id'=${author};`,
+      function (err, result) {
+        if (err) console.log(err);
+        if (result && result.isAdmin === 1) return true;
+        else return false;
       }
     );
   }
 }
-module.exports = Database;
+module.exports.Database = Database;
