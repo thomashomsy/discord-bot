@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 require("dotenv").config();
 const client = new Discord.Client();
 
-const Database = require("/discord-bot/helpers/Database.js");
+const Database = require("/root/discord-bot/helpers/Database.js");
 
 class MessageProccesor {
   constructor(db, client) {
