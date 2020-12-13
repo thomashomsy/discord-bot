@@ -55,4 +55,4 @@ class Database {
     );
   }
 }
-module.exports.Database = Database;
+exports.Database = Database;
