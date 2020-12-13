@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-class Database {
+module.exports = class Database {
   constructor() {
     this.connection = mysql.createConnection({
       host: process.env.DB_HOST,
@@ -54,5 +54,5 @@ class Database {
       }
     );
   }
-}
-exports.Database = Database;
+};
+//module.exports = DB;
